@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sea battle</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <div class="app">
+    <div class="app-header">
+      <h1 class="app-title"> Sea battle</h1>
+      <span class="app-subtitle">
+        Проект Alexei Marusov, junior front-end developer
+        <a class="app-link" href=""></a>
+      </span>
+    </div>
+    <div class="app-body">
+      <div class="battlefield" data-side="player"></div>
+      <div class="app-menu">
+        <div class="app-actions" data-scene="preparation">
+          <button class="app-action" data-computer="simple" disabled>
+            Избей Юнгу
+          </button>
+          <button clss="app-action" data-computer="middle" disabled>
+            Состязайся с Капитаном
+          </button>
+          <button class="app-action" data-computer="hard" disabled>
+            Брось вызов Адмиралу
+          </button>
+          <button class="app-action" data-type="random">
+            Случайный соперник
+          </button>
+          <button class="app-action" data-type="challenge">
+            Вызвать на бой
+          </button>
+          <button class="app-action" data-action="manually">
+            Расставить корабли самому
+          </button>
+          <button class="app-action" data-action="randomize">
+            Приказать расставить корабли помощнику
+          </button>
+        </div>
+        <div class="battlefield" data-side="opponent"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
