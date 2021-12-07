@@ -12,10 +12,10 @@
 <body>
   <div class="app">
     <div class="app-header">
-      <h1 class="app-title"> Sea battle</h1>
+      <h1 class="app-title">Sea battle</h1>
       <span class="app-subtitle">
-        Проект Alexei Marusov, junior front-end developer
-        <a class="app-link" href="">(Project on github)</a>
+        Alexei Marusov, junior front-end developer
+        <a class="app-link" href="https://github.com/MarusovAlexei/Sea_battle">(Project on github)</a>
       </span>
     </div>
     <div class="app-body">
@@ -44,6 +44,10 @@
             Приказать расставить корабли помощнику
           </button>
         </div>
+        <div class="app-action hidden" data-scene="computer">
+          <div class="battlefield-status">Ваш ход</div>
+          <button class="app-action" data-action="randomize">Сдаться</button>
+        </div>
       </div>
       <div data-side="opponent"></div>
     </div>
@@ -54,7 +58,9 @@
 
   <script src="assets/js/Application.js"></script>
   <script src="assets/js/Scene.js"></script>
+
   <script src="assets/js/scenes/PreparationScene.js"></script>
+  <script src="assets/js/scenes/ComputerScene.js"></script>
 
   <script src="assets/js/Battlefield.js"></script>
   <script src="assets/js/BattlefieldView.js"></script>

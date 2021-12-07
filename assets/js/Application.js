@@ -13,7 +13,7 @@ class Application {
     const player = new BattlefieldView();
     const opponent = new BattlefieldView();
 
-    Object.assign(this, { mouse, player, opponent })
+    Object.assign(this, { mouse, player, opponent });
 
     document.querySelector('[data-side="player"]').append(player.root);
     document.querySelector('[data-side="opponent"]').append(opponent.root);
@@ -40,7 +40,7 @@ class Application {
     }
 
     this.mouse.tick();
-  };
+  }
 
   // запускаем сцены с предварительными проверками
   start(sceneName) {
@@ -66,7 +66,7 @@ class Application {
     scene.start();
 
     return true;
-  };
+  }
 }
 
 

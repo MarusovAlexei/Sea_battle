@@ -7,7 +7,7 @@ class Ship {
   y = null;
 
   get placed() {
-    return Boolean(this.x && this.y !== null);
+    return this.x !== null && this.y !== null;
   }
 
   constructor(size, direction) {

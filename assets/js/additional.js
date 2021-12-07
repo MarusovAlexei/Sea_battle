@@ -14,3 +14,9 @@ function isUnderPoint(point, element) {
 
   return left <= x & x <= left + width && top <= y && y <= top + height;
 }
+
+// навешивает обработчик события и возвращает функцию, которая снимает это событие
+function addEventListener(element, ...args) {
+  element.addEventListener(...args)
+  return () => element.removeEventListener(...args);
+}
