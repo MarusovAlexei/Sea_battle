@@ -15,7 +15,7 @@
       <h1 class="app-title">Sea battle</h1>
       <span class="app-subtitle">
         Alexei Marusov, junior front-end developer
-        <a class="app-link" href="https://github.com/MarusovAlexei/Sea_battle">(Project on github)</a>
+        <a class="app-link" href="https://github.com/MarusovAlexei/Sea_battle" target="_blank">(Project on github)</a>
       </span>
     </div>
     <div class="app-body">
@@ -44,9 +44,12 @@
             Приказать расставить корабли помощнику
           </button>
         </div>
-        <div class="app-action hidden" data-scene="computer">
+
+        <div class="app-actions hidden" data-scene="computer">
           <div class="battlefield-status">Ваш ход</div>
-          <button class="app-action" data-action="randomize">Сдаться</button>
+          <button class="app-action" data-action="gaveup">Сдаться</button>
+          <button class="app-action" data-action="again">Играть еще раз
+          </button>
         </div>
       </div>
       <div data-side="opponent"></div>
@@ -67,6 +70,9 @@
 
   <script src="assets/js/Ship.js"></script>
   <script src="assets/js/ShipView.js"></script>
+
+  <script src="assets/js/Shot.js"></script>
+  <script src="assets/js/ShotView.js"></script>
 
   <script src="assets/js/main.js"></script>
 </body>

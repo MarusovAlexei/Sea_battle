@@ -7,11 +7,13 @@ class BattlefieldView extends Battlefield {
   dock = null;
   //div с выстрелами
   polygon = null;
+  //отображение кораблей
+  showShips = true;
 
   //быстрый доступ к каждой ячейке через матрицу
   cells = [];
 
-  constructor() {
+  constructor(showShips = true) {
     super();
 
     const root = document.createElement('div');
@@ -26,7 +28,7 @@ class BattlefieldView extends Battlefield {
     const polygon = document.createElement('div');
     polygon.classList.add('battlefield-polygon');
 
-    Object.assign(this, { root, table, dock, polygon });
+    Object.assign(this, { root, table, dock, polygon, showShips });
     root.append(table, dock, polygon);
 
     //делаем таблицу игрового поля
@@ -75,19 +77,22 @@ class BattlefieldView extends Battlefield {
       return false;
     }
 
-    this.dock.append(ship.div);
+    if (this.showShips) {
 
-    if (ship.placed) {
-      const cell = this.cells[y][x];
-      const cellRect = cell.getBoundingClientRect();
-      const rootRect = this.root.getBoundingClientRect();
+      this.dock.append(ship.div);
 
-      ship.div.style.left = `${cellRect.left - rootRect.left}px`;
-      ship.div.style.top = `${cellRect.top - rootRect.top}px`;
-    } else {
-      ship.setDirection('row');
-      ship.div.style.left = `${ship.startX}px`;
-      ship.div.style.top = `${ship.startY}px`;
+      if (ship.placed) {
+        const cell = this.cells[y][x];
+        const cellRect = cell.getBoundingClientRect();
+        const rootRect = this.root.getBoundingClientRect();
+
+        ship.div.style.left = `${cellRect.left - rootRect.left}px`;
+        ship.div.style.top = `${cellRect.top - rootRect.top}px`;
+      } else {
+        ship.setDirection('row');
+        ship.div.style.left = `${ship.startX}px`;
+        ship.div.style.top = `${ship.startY}px`;
+      }
     }
 
     return true;
@@ -107,5 +112,36 @@ class BattlefieldView extends Battlefield {
 
   isUnder(point) {
     return isUnderPoint(point, this.root);
+  }
+
+  // добавляем графическую часть выстрела
+  addShot(shot) {
+    if (!super.addShot(shot)) {
+      return false;
+    }
+
+    this.polygon.append(shot.div);
+
+    const cell = this.cells[shot.y][shot.x];
+    const cellRect = cell.getBoundingClientRect();
+    const rootRect = this.root.getBoundingClientRect();
+
+    shot.div.style.left = `${cellRect.left - rootRect.left}px`;
+    shot.div.style.top = `${cellRect.top - rootRect.top}px`;
+
+    return true;
+  }
+
+  // удаляем графическую часть выстрела
+  removeShot(shot) {
+    if (!super.removeShot(shot)) {
+      return false;
+    }
+
+    if (Array.prototype.includes.call(this.polygon.children, shot.div)) {
+      shot.div.remove();
+    }
+
+    return true;
   }
 }

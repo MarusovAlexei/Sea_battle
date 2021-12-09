@@ -10,8 +10,9 @@ class Application {
 
   constructor(scenes = {}) {
     const mouse = new Mouse(document.body);
-    const player = new BattlefieldView();
-    const opponent = new BattlefieldView();
+
+    const player = new BattlefieldView(true);
+    const opponent = new BattlefieldView(false);
 
     Object.assign(this, { mouse, player, opponent });
 
@@ -43,7 +44,7 @@ class Application {
   }
 
   // запускаем сцены с предварительными проверками
-  start(sceneName) {
+  start(sceneName, ...args) {
 
     // является ли сцена активной
     if (this.activeScene && this.activeScene.name === sceneName) {
@@ -63,7 +64,7 @@ class Application {
     //запускаем необходимую сцену
     const scene = this.scenes[sceneName];
     this.activeScene = scene;
-    scene.start();
+    scene.start(...args);
 
     return true;
   }

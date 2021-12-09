@@ -24,33 +24,54 @@ class PreparationScene extends Scene {
   }
 
   start() {
+    const { player, opponent } = this.app;
+
+    // очищаем игровые поля
+    opponent.clear();
+    player.removeAllShots();
+
+    // уничтоженные корабли получают killed = false
+    player.ships.forEach((ship) => (ship.killed = false));
+
     this.removeEventListeners = [];
 
     // при вызове start будут скрываться ненужные и показываться нужные action
-    document.querySelectorAll('.app-actions').forEach((element) => element.classList.add('hidden'));
-    document.querySelector('[data-scene="preparation"]').classList.remove('hidden');
+    document.
+      querySelectorAll('.app-actions')
+      .forEach((element) => element.classList.add('hidden'));
+
+    document
+      .querySelector('[data-scene="preparation"]')
+      .classList.remove('hidden');
 
     // находим кнопку случайной расстановки кораблей
     const randomizeButton = document.querySelector('[data-action="randomize"]');
-    this.removeEventListeners.push(addEventListener(randomizeButton, 'click', () => this.randomize()));
+    this.removeEventListeners.push(
+      addEventListener(randomizeButton, 'click', () =>
+        this.randomize()));
 
     // находим кнопку ручной расстановки кораблей
     const manuallyButton = document.querySelector('[data-action="manually"]');
-    this.removeEventListeners.push(addEventListener(manuallyButton, 'click', () => this.manually()));
+    this.removeEventListeners.push(
+      addEventListener(manuallyButton, 'click', () =>
+        this.manually()));
 
     // находим кнопки уровней сложности
     const simpleButton = document.querySelector('[data-computer="simple"]');
     const middleButton = document.querySelector('[data-computer="middle"]');
     const hardButton = document.querySelector('[data-computer="hard"]');
 
-    this.removeEventListeners.push(addEventListener(simpleButton, 'click', () => this.startComputer('simple')));
-    // removeEventListener();
+    this.removeEventListeners.push(
+      addEventListener(simpleButton, 'click', () =>
+        this.startComputer('simple')));
 
-    this.removeEventListeners.push(addEventListener(middleButton, 'click', () => this.startComputer('middle')));
-    // removeEventListener();
+    this.removeEventListeners.push(
+      addEventListener(middleButton, 'click', () =>
+        this.startComputer('middle')));
 
-    this.removeEventListeners.push(addEventListener(hardButton, 'click', () => this.startComputer('hard')));
-    // removeEventListener();
+    this.removeEventListeners.push(
+      addEventListener(hardButton, 'click', () =>
+        this.startComputer('hard')));
   }
 
   stop() {
@@ -162,8 +183,20 @@ class PreparationScene extends Scene {
   }
 
   startComputer(level) {
+    const matrix = this.app.player.matrix;
+
+    // клетки в которых нет кораблей
+    const withoutShipItems = matrix.flat().filter((item) => !item.ship);
+    let untouchables = [];
+
+    if (level === 'simple') {
+    } else if (level === 'middle') {
+      untouchables = getRandomSeveral(withoutShipItems, 20);
+    } else if (level === 'hard') {
+      untouchables = getRandomSeveral(withoutShipItems, 40);
+    }
 
     // запуск ComputerScene и вызов stop у PreparationScene
-    this.app.start('computer');
+    this.app.start('computer', untouchables);
   }
 }

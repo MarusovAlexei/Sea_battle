@@ -3,8 +3,18 @@ class Battlefield {
   shots = [];
 
   #matrix = null;
-  // флаг изменения
   #changed = true;
+
+  get loser() {
+    // проверяем есть ли у нас целые корабли
+    for (const ship of this.ships) {
+      if (!ship.killed) {
+        return false;
+      }
+    }
+
+    return true;
+  }
 
   // матрица игрового поля со служебной инфо
   // если есть изменения в #change, то перезаписываем #matrix
@@ -24,6 +34,9 @@ class Battlefield {
           y,
           ship: null,
           free: true,
+
+          shoted: false,
+          wounded: false,
         };
 
         row.push(item);
@@ -58,6 +71,15 @@ class Battlefield {
             item.free = false;
           }
         }
+      }
+    }
+
+    for (const { x, y } of this.shots) {
+      const item = matrix[y][x];
+      item.shoted = true;
+
+      if (item.ship) {
+        item.wounded = true;
       }
     }
 
@@ -158,12 +180,80 @@ class Battlefield {
     return ships.length;
   }
 
-  addShot() {
+  // добавление выстрела
+  addShot(shot) {
+
+    // перебираем все существующие выстрелы
+    // проверяем их координаты
+    // блокируем возможность стрелять в одну и ту же клетку
+    for (const { x, y } of this.shots) {
+      if (x === shot.x && y === shot.y) {
+        return false;
+      }
+    }
+
+    // добавляем в общий спиок выстрелов
+    this.shots.push(shot);
     this.#changed = true;
+
+    // актуальная версия матрицы
+    const matrix = this.matrix;
+    const { x, y } = shot;
+
+    // если есть корабль в ячейке выстрела
+    if (matrix[y][x].ship) {
+      shot.setVariant('wounded');
+
+      // пробегаемся по размеру корабля
+      // узнаем убит он или нет
+      const { ship } = matrix[y][x];
+      const dx = ship.direction === 'row';
+      const dy = ship.direction === 'column';
+
+      // по умолчанию = убит
+      let killed = true;
+
+      // ищем палубу, которая не ранена
+      for (let i = 0; i < ship.size; i++) {
+        const cx = ship.x + dx * i;
+        const cy = ship.y + dy * i;
+        const item = matrix[cy][cx];
+
+        // если не раненной палубы нет, то корабль убит
+        if (!item.wounded) {
+          killed = false;
+          break;
+        }
+      }
+
+      if (killed) {
+        ship.killed = true;
+
+        for (let i = 0; i < ship.size; i++) {
+          const cx = ship.x + dx * i;
+          const cy = ship.y + dy * i;
+
+          const shot = this.shots.find(shot => shot.x === cx && shot.y === cy);
+          shot.setVariant('killed');
+        }
+      }
+    }
+
+    this.#changed = true;
+    return true;
   }
 
-  removeShot() {
+  // удаление выстрела
+  removeShot(shot) {
+    if (!this.shots.includes(shot)) {
+      return false;
+    }
+
+    const index = this.shots.indexOf(shot);
+    this.shots.splice(index, 1);
+
     this.#changed = true;
+    return true;
   }
 
   removeAllShots() {
@@ -194,5 +284,10 @@ class Battlefield {
         }
       }
     }
+  }
+
+  clear() {
+    this.removeAllShots();
+    this.removeAllShips();
   }
 }
