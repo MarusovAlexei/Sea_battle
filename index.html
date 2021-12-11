@@ -22,33 +22,27 @@
       <div data-side="player"></div>
       <div class="app-menu">
         <div class="app-actions" data-scene="preparation">
-          <button class="app-action" data-computer="simple" disabled>
+          <button class="app-action shine-button" data-computer="simple" data-menu="second-menu" disabled>
             Избей Юнгу
           </button>
-          <button class="app-action" data-computer="middle" disabled>
+          <button class="app-action shine-button" data-computer="middle" data-menu="second-menu" disabled>
             Состязайся с Капитаном
           </button>
-          <button class="app-action" data-computer="hard" disabled>
+          <button class="app-action shine-button" data-computer="hard" data-menu="second-menu" disabled>
             Брось вызов Адмиралу
           </button>
-          <button class="app-action" data-type="random" disabled>
-            Случайный соперник
-          </button>
-          <button class="app-action" data-type="challenge" disabled>
-            Вызвать на бой
-          </button>
-          <button class="app-action" data-action="manually">
+          <button class="app-action shine-button" data-action="manually" data-menu="second-menu">
             Расставить корабли самому
           </button>
-          <button class="app-action" data-action="randomize">
+          <button class="app-action shine-button" data-action="randomize" data-menu="second-menu">
             Приказать расставить корабли помощнику
           </button>
         </div>
 
         <div class="app-actions hidden" data-scene="computer">
           <div class="battlefield-status">Ваш ход</div>
-          <button class="app-action" data-action="gaveup">Сдаться</button>
-          <button class="app-action" data-action="again">Играть еще раз
+          <button class="app-action shine-button" data-action="gaveup">Сдаться</button>
+          <button class="app-action shine-button" data-action="again">Играть еще раз
           </button>
         </div>
       </div>
@@ -56,23 +50,35 @@
     </div>
   </div>
 
-  <script src="assets/js/additional.js"></script>
-  <script src="assets/js/Mouse.js"></script>
+  <div class="instruction">
+    <ul>
+      <li><span class="instruction-accent">Правила игры:</span></li>
+      <li><span class="instruction-accent">1.</span>Расстовляем корабли вручную или приказываем помошнику.</li>
+      <li><span class="instruction-accent">2.</span>Выбираем уровень сложности компьютера, с которым будем играть.
+      </li>
+      <li><span class="instruction-accent">3.</span>Делаем первый выстрел и игра началась.</li>
+      <li><span class="instruction-accent">4.</span>Во время игры вы можете завершить игру, нажав кнопку сдачи.</li>
+      <li><span class="instruction-accent">5.</span>После окончания игры вы можете начать игру заново.</li>
+    </ul>
+  </div>
 
-  <script src="assets/js/Application.js"></script>
-  <script src="assets/js/Scene.js"></script>
+  <script src="assets/js/sourse_code/additional.js"></script>
+  <script src="assets/js/model/logic_model/Mouse.js"></script>
+
+  <script src="assets/js/sourse_code/Application.js"></script>
+  <script src="assets/js/scenes/Scene.js"></script>
 
   <script src="assets/js/scenes/PreparationScene.js"></script>
   <script src="assets/js/scenes/ComputerScene.js"></script>
 
-  <script src="assets/js/Battlefield.js"></script>
-  <script src="assets/js/BattlefieldView.js"></script>
+  <script src="assets/js/model/logic_model/Battlefield.js"></script>
+  <script src="assets/js/model/view_model/BattlefieldView.js"></script>
 
-  <script src="assets/js/Ship.js"></script>
-  <script src="assets/js/ShipView.js"></script>
+  <script src="assets/js/model/logic_model/Ship.js"></script>
+  <script src="assets/js/model/view_model/ShipView.js"></script>
 
-  <script src="assets/js/Shot.js"></script>
-  <script src="assets/js/ShotView.js"></script>
+  <script src="assets/js/model/logic_model/Shot.js"></script>
+  <script src="assets/js/model/view_model/ShotView.js"></script>
 
   <script src="assets/js/main.js"></script>
 </body>
