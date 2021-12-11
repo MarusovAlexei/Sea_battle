@@ -23,6 +23,6 @@ Game only with a bot.
 Technologies used:
 
 1. HTML5.
-2. CSS3.
+2. CSS3 (SCSS).
 3. JS (without frameworks).
 4. Gulp.

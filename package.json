@@ -1,9 +1,8 @@
 {
-  "name": "gulp",
+  "name": "sea_battle",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "devDependencies": {
+  "main": "main.js",
+   "devDependencies": {
     "autoprefixer": "^10.3.1",
     "browser-sync": "^2.27.5",
     "css-mqpacker": "^7.0.0",

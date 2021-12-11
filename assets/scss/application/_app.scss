@@ -1,0 +1,50 @@
+.app {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.app-header {
+  padding: 30px;
+
+  text-align: center;
+}
+
+.app-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin-top: 50px;
+}
+
+.app-subtitle {
+  color: gray;
+}
+
+.app-link {
+  text-decoration: none;
+
+  color: rgb(189, 112, 24);
+}
+
+.app-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+}
+
+.app-action {
+  width: 210px;
+  padding: 10px;
+}
+
+.instruction {
+  margin-top: 10px;
+  margin-left: 62vw;
+
+  text-align: left;
+
+  font-weight: 900;
+}

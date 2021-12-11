@@ -33,15 +33,17 @@ class ComputerScene extends Scene {
     gaveupButton.classList.remove('hidden');
     againButton.classList.add('hidden');
 
+    // кнопка сдаться выводит в начальное меню
     this.removeEventListeners.push(
       addEventListener(gaveupButton, 'click', () => {
-        this.app.start('preparation');
+        this.app.start('preparation')
       })
     );
 
+    // // кнопка играть снова выводит в начальное меню
     this.removeEventListeners.push(
       addEventListener(againButton, 'click', () => {
-        this.app.start('preparation');
+        this.app.start('preparation')
       })
     );
   }
@@ -79,10 +81,6 @@ class ComputerScene extends Scene {
 
       return;
     }
-
-    // матрицу cells делаем плоской
-    // const cells = opponent.cells.flat();
-    // cells.forEach(cell => cell.classList.remove('battlefield-item__active'))
 
     if (isUnderPoint(mouse, opponent.table)) {
       const cell = cells.find(cell => isUnderPoint(mouse, cell));

@@ -1,0 +1,50 @@
+.shine-button {
+  position: relative;
+
+  display: inline-block;
+  overflow: hidden;
+
+  margin: 5px;
+  padding: 5px 10px;
+
+  transition: 0.2s ease-in-out;
+  text-decoration: none;
+
+  color: #fe6637;
+  border: 3px solid #fe6637;
+  border-radius: 8px;
+  background-color: white;
+
+  font-family: "Montserrat", sans-serif;
+}
+.shine-button:before {
+  position: absolute;
+  top: -8px;
+  left: -75px;
+
+  width: 50px;
+  height: 50px;
+
+  content: "";
+  transform: skewX(-45deg);
+
+  background: linear-gradient(
+  90deg,
+  rgba(255, 255, 255, 0.1),
+  rgba(255, 255, 255, 0.5)
+  );
+}
+.shine-button:hover {
+  color: #ffffff;
+  background: #fe6637;
+}
+.shine-button:hover:before {
+  left: 150px;
+
+  transition: 0.5s ease-in-out;
+}
+.instruction-accent {
+  margin-right: 10px;
+
+  font-weight: bold;
+}

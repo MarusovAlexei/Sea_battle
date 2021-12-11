@@ -1,4 +1,4 @@
-//отвечает за все приложение
+// отвечает за все приложение
 class Application {
   mouse = null;
 
@@ -19,7 +19,7 @@ class Application {
     document.querySelector('[data-side="player"]').append(player.root);
     document.querySelector('[data-side="opponent"]').append(opponent.root);
 
-    // регистрируем все сцены из конструктора вмассив
+    // регистрируем все сцены из конструктора в массив
     for (const [sceneName, SceneClass] of Object.entries(scenes)) {
       this.scenes[sceneName] = new SceneClass(sceneName, this);
     }
@@ -61,7 +61,7 @@ class Application {
       this.activeScene.stop();
     }
 
-    //запускаем необходимую сцену
+    // запускаем необходимую сцену
     const scene = this.scenes[sceneName];
     this.activeScene = scene;
     scene.start(...args);

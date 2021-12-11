@@ -1,6 +1,7 @@
+/* / функции частого использования
+/ */
 const { result } = require("lodash");
 
-// функции частого использования
 function getRandomBetween(min, max) {
   return min + Math.floor(Math.random() * (max - min + 1))
 };
@@ -43,3 +44,4 @@ function getRandomSeveral(array = [], size) {
 
   return result;
 }
+

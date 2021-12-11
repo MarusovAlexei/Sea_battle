@@ -1,0 +1,44 @@
+.ship {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 32px;
+  height: 32px;
+  margin: -3px;
+
+  cursor: pointer;
+
+  border: 3px solid #fe6637;
+  background: repeating-linear-gradient(
+  -60deg,
+  rgba(255, 174, 0, 0.568) 0,
+  rgba(255, 230, 0, 0.534) 1px,
+  transparent 1px,
+  transparent 5px
+  );
+}
+
+.ship-row-2 {
+  width: 65px;
+}
+
+.ship-row-3 {
+  width: 98px;
+}
+
+.ship-row-4 {
+  width: 131px;
+}
+
+.ship-column-2 {
+  height: 65px;
+}
+
+.ship-column-3 {
+  height: 98px;
+}
+
+.ship-column-4 {
+  height: 131px;
+}
