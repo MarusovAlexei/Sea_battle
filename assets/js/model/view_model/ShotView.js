@@ -1,4 +1,5 @@
-// визуальная часть выстрела
+/* визуальная часть выстрела */
+
 class ShotView extends Shot {
   div = null;
 

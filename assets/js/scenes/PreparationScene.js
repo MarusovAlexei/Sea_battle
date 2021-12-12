@@ -1,4 +1,6 @@
-// расположение и начальные координаты кораблей
+/* сцена подготовки к матчу */
+
+// размер, расположение и начальные координаты кораблей
 const shipDatas = [
   { size: 4, direction: 'row', startX: 10, startY: 345 },
   { size: 3, direction: 'row', startX: 10, startY: 390 },
@@ -13,16 +15,20 @@ const shipDatas = [
 ];
 
 class PreparationScene extends Scene {
+
+  // координаты при перемещении корабля
   draggedShip = null;
   draggedOffsetX = 0;
   draggedOffsetY = 0;
 
   removeEventListeners = [];
 
+  // при инициализации создаем корабли в dock
   init() {
     this.manually();
   }
 
+  // старт приложения
   start() {
     const { player, opponent } = this.app;
 
@@ -61,6 +67,7 @@ class PreparationScene extends Scene {
     const middleButton = document.querySelector('[data-computer="middle"]');
     const hardButton = document.querySelector('[data-computer="hard"]');
 
+    // вышаем обработчики на кнопки уровней сложности
     this.removeEventListeners.push(
       addEventListener(simpleButton, 'click', () =>
         this.startComputer('simple')));
@@ -74,8 +81,8 @@ class PreparationScene extends Scene {
         this.startComputer('hard')));
   }
 
+  // когда переходим к следующей сцене удаляем обработчик
   stop() {
-    // отвязка контекста
     for (const removeEventListener of this.removeEventListeners) {
       removeEventListener();
     }
@@ -83,6 +90,7 @@ class PreparationScene extends Scene {
     this.removeEventListeners = [];
   }
 
+  // манипуляции с кораблем
   update() {
     const { mouse, player } = this.app;
 
@@ -158,6 +166,7 @@ class PreparationScene extends Scene {
     }
   }
 
+  // случайная расстановка кораблей игрока
   randomize() {
     const { player } = this.app;
 
@@ -171,6 +180,7 @@ class PreparationScene extends Scene {
     }
   }
 
+  // ручная расстановка кораблей игрока
   manually() {
     const { player } = this.app;
 
@@ -182,6 +192,7 @@ class PreparationScene extends Scene {
     }
   }
 
+  // проверяем уровень сложности и свободные клетки, а потом запускаем бота
   startComputer(level) {
     const matrix = this.app.player.matrix;
 

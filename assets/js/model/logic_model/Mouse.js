@@ -4,14 +4,17 @@ class Mouse {
 
   // объект исследования (положение и прокрутка колесика мышки)
   element = null;
+
   // находится ли мышка над элементом
   under = false;
+
   // находилась ли мышка над нашим элементом в предыдущий тик работы приложения
   pUnder = false;
 
   // координаты мышки
   x = null;
   y = null;
+
   // координаты мышки в предыдущий тик работы приложения
   pX = null;
   pY = null;
@@ -32,7 +35,7 @@ class Mouse {
       this.y = e.clientY;
       this.delta = 0;
       this.under = true;
-    };
+    }
 
     // событие: движение мышки над элементом
     element.addEventListener("mousemove", (e) => {
@@ -74,7 +77,7 @@ class Mouse {
       }
     });
 
-    // // событие: прокрутка колесика мышки
+    // событие: прокрутка колесика мышки
     element.addEventListener("wheel", (e) => {
       this.tick();
 

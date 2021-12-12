@@ -1,16 +1,17 @@
-/* / функции частого использования
-/ */
-const { result } = require("lodash");
+/* функции частого использования */
 
+// возвращает рандомное число
 function getRandomBetween(min, max) {
-  return min + Math.floor(Math.random() * (max - min + 1))
-};
+  return min + Math.floor(Math.random() * (max - min + 1));
+}
 
+// возвращает случайный элемент из агрументов, которые в него переданы
 function getRandomFrom(...args) {
   const index = Math.floor(Math.random() * args.length);
   return args[index];
-};
+}
 
+// возвращает true, если point находится над element
 function isUnderPoint(point, element) {
   const { left, top, width, height } = element.getBoundingClientRect();
   const { x, y } = point;

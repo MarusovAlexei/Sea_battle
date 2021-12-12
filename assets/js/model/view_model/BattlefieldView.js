@@ -1,37 +1,46 @@
+/* визуальная модель игрового поля */
+
 class BattlefieldView extends Battlefield {
-  //все приложение
+
+  // все приложение
   root = null;
-  //игровое поле
+
+  // игровое поле
   table = null;
-  //div со всеми кораблями до расстановки
+
+  // div со всеми кораблями до расстановки
   dock = null;
-  //div с выстрелами
+
+  // div с выстрелами
   polygon = null;
-  //отображение кораблей
+
+  // отображение кораблей
   showShips = true;
 
-  //быстрый доступ к каждой ячейке через матрицу
+  // матрица ячеек
   cells = [];
 
   constructor(showShips = true) {
     super();
 
+    // создаем игровое поле
     const root = document.createElement('div');
     root.classList.add('battlefield');
-
     const table = document.createElement('table');
     table.classList.add('battlefield-table');
 
+    // создаем div со всеми кораблями до расстановки
     const dock = document.createElement('div');
     dock.classList.add('battlefield-dock');
 
+    // создаем div с выстрелами
     const polygon = document.createElement('div');
     polygon.classList.add('battlefield-polygon');
 
     Object.assign(this, { root, table, dock, polygon, showShips });
     root.append(table, dock, polygon);
 
-    //делаем таблицу игрового поля
+    // делаем таблицу игрового поля
     for (let y = 0; y < 10; y++) {
       const row = [];
       const tr = document.createElement('tr');
@@ -51,6 +60,7 @@ class BattlefieldView extends Battlefield {
       this.cells.push(row);
     }
 
+    // добавляем маркеры по левому краю игрового поля
     for (let x = 0; x < 10; x++) {
       const cell = this.cells[0][x];
       const marker = document.createElement('div');
@@ -61,6 +71,7 @@ class BattlefieldView extends Battlefield {
       cell.append(marker);
     }
 
+    // добавляем маркеры по верхнему краю игрового поля
     for (let y = 0; y < 10; y++) {
       const cell = this.cells[y][0];
       const marker = document.createElement('div');
@@ -72,6 +83,7 @@ class BattlefieldView extends Battlefield {
     }
   }
 
+  // добавляем графическую часть корабля
   addShip(ship, x, y) {
     if (!super.addShip(ship, x, y)) {
       return false;
@@ -98,6 +110,7 @@ class BattlefieldView extends Battlefield {
     return true;
   }
 
+  // удаляем графическую часть корабля
   removeShip(ship) {
     if (!super.removeShip(ship)) {
       return false;
@@ -110,6 +123,7 @@ class BattlefieldView extends Battlefield {
     return true;
   }
 
+  //
   isUnder(point) {
     return isUnderPoint(point, this.root);
   }

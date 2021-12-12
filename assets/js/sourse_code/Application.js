@@ -1,16 +1,23 @@
-// отвечает за все приложение
+/* отвечает за работу всего приложения */
+
 class Application {
+
+  // объект - мышка
   mouse = null;
 
+  // игроки
   player = null;
   opponent = null;
 
+  // массив сцен и активная сцена
   scenes = {};
   activeScene = null;
 
   constructor(scenes = {}) {
+
     const mouse = new Mouse(document.body);
 
+    // создаем игровые поля для игроков
     const player = new BattlefieldView(true);
     const opponent = new BattlefieldView(false);
 
@@ -33,6 +40,7 @@ class Application {
     requestAnimationFrame(() => this.tick());
   }
 
+  // тик для мышки
   tick() {
     requestAnimationFrame(() => this.tick());
 
@@ -43,7 +51,7 @@ class Application {
     this.mouse.tick();
   }
 
-  // запускаем сцены с предварительными проверками
+  // запускаем конкретную сцену
   start(sceneName, ...args) {
 
     // является ли сцена активной

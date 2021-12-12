@@ -1,21 +1,29 @@
+/* сцена игры с ботом */
+
 class ComputerScene extends Scene {
+
   // массив выстрелов, которые делать не надо (middle - 20, hard - 40)
   untouchables = [];
+
   playerTurn = true;
   status = null;
   removeEventListeners = [];
 
+  // показывает чей ход
   init() {
     this.status = document.querySelector('.battlefield-status');
   }
 
+  // управление началом и концом боя
   start(untouchables) {
     const { opponent } = this.app;
 
+    // скрываем меню
     document
       .querySelectorAll('.app-actions')
       .forEach((element) => element.classList.add('hidden'));
 
+    // показываем меню боя (чей ход и кнопку сдаться)
     document
       .querySelector('[data-scene="computer"]')
       .classList.remove('hidden');
@@ -27,6 +35,7 @@ class ComputerScene extends Scene {
 
     this.removeEventListeners = [];
 
+    // находим кнопки сдаться и играть еще раз 
     const gaveupButton = document.querySelector('[data-action="gaveup"]');
     const againButton = document.querySelector('[data-action="again"]');
 
@@ -36,18 +45,19 @@ class ComputerScene extends Scene {
     // кнопка сдаться выводит в начальное меню
     this.removeEventListeners.push(
       addEventListener(gaveupButton, 'click', () => {
-        this.app.start('preparation')
+        this.app.start('preparation');
       })
     );
 
     // // кнопка играть снова выводит в начальное меню
     this.removeEventListeners.push(
       addEventListener(againButton, 'click', () => {
-        this.app.start('preparation')
+        this.app.start('preparation');
       })
     );
   }
 
+  // когда переходим к следующей сцене удаляем обработчик
   stop() {
     for (const removeEventListener of this.removeEventListeners) {
       removeEventListener();
@@ -56,15 +66,20 @@ class ComputerScene extends Scene {
     this.removeEventListeners = [];
   }
 
+  // метод, ответственный за провдение логики в computer сцене
   update() {
+
+    // получаем данные мышки, игрока и компьютера из приложения
     const { mouse, opponent, player } = this.app;
 
+    // проверяем, проиграл ли кто-нибудь
     const isEnd = opponent.loser || player.loser;
 
     const cells = opponent.cells.flat();
     cells.forEach((cell) =>
       cell.classList.remove("battlefield-item__active"));
 
+    // выводим результат игры
     if (isEnd) {
       if (opponent.loser) {
         this.status.textContent = "Вы выиграли!";
@@ -72,6 +87,7 @@ class ComputerScene extends Scene {
         this.status.textContent = "Вы проиграли!";
       }
 
+      // скрываем кнопку сдаться и показываем кнопку играть еще раз
       document.querySelector('[data-action="gaveup"]')
         .classList.add("hidden");
 

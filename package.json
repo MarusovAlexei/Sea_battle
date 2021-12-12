@@ -1,6 +1,6 @@
 {
   "name": "sea_battle",
-  "version": "1.0.0",
+  "version": "1.11",
   "main": "main.js",
    "devDependencies": {
     "autoprefixer": "^10.3.1",

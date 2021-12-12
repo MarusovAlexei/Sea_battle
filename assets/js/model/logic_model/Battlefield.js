@@ -1,7 +1,12 @@
+/* логическая модель игрового поля */
+
 class Battlefield {
+
+  // массивы кораблей и выстрелов
   ships = [];
   shots = [];
 
+  // матрица игрового поля
   #matrix = null;
   #changed = true;
 
@@ -37,7 +42,7 @@ class Battlefield {
 
           shoted: false,
           wounded: false,
-        };
+        }
 
         row.push(item);
       }
@@ -107,7 +112,8 @@ class Battlefield {
 
   // лежат ли x и y в пределах игрового поля
   inField(x, y) {
-    const isNumber = (n) => parseInt(n) === n && !isNaN(n) && ![Infinity, -Infinity].includes(n);
+    const isNumber = (n) => parseInt(n) === n && !isNaN(n)
+      && ![Infinity, -Infinity].includes(n);
 
     if (!isNumber(x) || !isNumber(y)) {
       return false;
@@ -116,6 +122,7 @@ class Battlefield {
     return 0 <= x && x < 10 && 0 <= y && y < 10;
   }
 
+  // добавить корабль
   addShip(ship, x, y) {
     if (this.ships.includes(ship)) {
       return false;
@@ -147,7 +154,7 @@ class Battlefield {
       }
 
       if (placed) {
-        Object.assign(ship, { x, y })
+        Object.assign(ship, { x, y });
       }
     }
 
@@ -155,6 +162,7 @@ class Battlefield {
     return true;
   }
 
+  // убрать корабль
   removeShip(ship) {
     if (!this.ships.includes(ship)) {
       return false;
@@ -170,6 +178,7 @@ class Battlefield {
     return true;
   }
 
+  // убрать все корабли
   removeAllShips() {
     const ships = this.ships.slice();
 
@@ -180,7 +189,7 @@ class Battlefield {
     return ships.length;
   }
 
-  // добавление выстрела
+  // добавить выстрел
   addShot(shot) {
 
     // перебираем все существующие выстрелы
@@ -256,6 +265,7 @@ class Battlefield {
     return true;
   }
 
+  // удаление всех выстрелов
   removeAllShots() {
     const shots = this.shots.slice();
 
@@ -266,6 +276,7 @@ class Battlefield {
     return shots.length;
   }
 
+  // выставить корабли в случайном порядке
   randomize(ShipClass = Ship) {
     this.removeAllShips();
 
@@ -286,6 +297,7 @@ class Battlefield {
     }
   }
 
+  // удалить все корабли и все выстрелы
   clear() {
     this.removeAllShots();
     this.removeAllShips();

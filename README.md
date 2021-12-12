@@ -17,12 +17,20 @@ How to play:
 4. During the game, you can end the game by pressing the surrender button.
 5. After the end of the game, you can start the game over.
 
-Version 1.0
-Game only with a bot.
+Version 1.11
+
+- Play only with a bot.
+- New design.
+
+What I want to do in version 2.0:
+
+- Play with a friend on the your's PC.
+- Ship explosion animation.
+- New design of ships, battlefield and background.
 
 Technologies used:
 
 1. HTML5.
 2. CSS3 (SCSS).
-3. JS (without frameworks).
+3. JS (Solid).
 4. Gulp.
