@@ -1,44 +1,47 @@
+@use "../presets/skin" as *;
+@use "../presets/variables" as *;
+
 .ship {
   position: absolute;
   top: 0;
   left: 0;
 
-  width: 32px;
-  height: 32px;
-  margin: -3px;
+  width: $cell-size;
+  height: $cell-size;
+  margin: calc($border-size * -1);
 
   cursor: pointer;
 
-  border: 3px solid #fe6637;
+  border: $border-size solid $color-ship-border;
   background: repeating-linear-gradient(
-  -60deg,
-  rgba(255, 174, 0, 0.568) 0,
-  rgba(255, 230, 0, 0.534) 1px,
-  transparent 1px,
-  transparent 5px
+    -60deg,
+    rgba($color-ship-background, 0.568) 0,
+    rgba($color-ship-strokes, 0.534) 1px,
+    transparent 1px,
+    transparent 5px
   );
 }
 
 .ship-row-2 {
-  width: 65px;
+  width: calc($cell-size * 2 + $battlefield-border);
 }
 
 .ship-row-3 {
-  width: 98px;
+  width: calc($cell-size * 3 + $battlefield-border * 2);
 }
 
 .ship-row-4 {
-  width: 131px;
+  width: calc($cell-size * 4 + $battlefield-border * 3);
 }
 
 .ship-column-2 {
-  height: 65px;
+  height: calc($cell-size * 2 + $battlefield-border);
 }
 
 .ship-column-3 {
-  height: 98px;
+  height: calc($cell-size * 3 + $battlefield-border * 2);
 }
 
 .ship-column-4 {
-  height: 131px;
+  height: calc($cell-size * 4 + $battlefield-border * 3);
 }

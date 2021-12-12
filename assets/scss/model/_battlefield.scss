@@ -1,4 +1,5 @@
-@use "../presets" as *;
+@use "../presets/skin" as *;
+@use "../presets/variables" as *;
 
 .battlefield {
   position: relative;
@@ -8,24 +9,24 @@
   border-spacing: 0;
 
   border-collapse: collapse;
-  background-color: rgba($color-primary, 0.05);
+  background-color: rgba($color-battlefield, 0.05);
 }
 
 .battlefield-item {
   position: relative;
 
-  width: 32px;
-  height: 32px;
+  width: $cell-size;
+  height: $cell-size;
 
-  border: 1px solid rgba(0, 21, 253, 0.15);
+  border: $battlefield-border solid rgba($color-battlefield-border, 0.15);
 }
 
 .battlefield-item__active {
-  background-color: rgba(219, 66, 233, 0.2);
+  background-color: rgba($color-battlefield-accent, 0.2);
 }
 
 .battlefield-status {
-  padding: 20px;
+  padding: $gap;
 
   text-align: center;
 }
@@ -39,8 +40,8 @@
   flex-direction: column;
   justify-content: center;
 
-  width: 32px;
-  height: 32px;
+  width: $cell-size;
+  height: $cell-size;
 
   text-align: center;
 

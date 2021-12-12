@@ -1,3 +1,6 @@
+@use "../presets/skin" as *;
+@use "../presets/variables" as *;
+
 .app {
   width: 1000px;
   margin: 0 auto;
@@ -17,14 +20,18 @@
   margin-top: 50px;
 }
 
+.app-title {
+  font-family: $font-header;
+}
+
 .app-subtitle {
-  color: gray;
+  color: $color-text;
 }
 
 .app-link {
   text-decoration: none;
 
-  color: rgb(189, 112, 24);
+  color: $color-text-accent;
 }
 
 .app-actions {
@@ -46,5 +53,10 @@
 
   text-align: left;
 
-  font-weight: 900;
+  font-family: $font-main;
+  font-size: $font-size;
+
+  &-accent {
+    font-weight: 900;
+  }
 }

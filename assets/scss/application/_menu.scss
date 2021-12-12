@@ -1,3 +1,6 @@
+@use "../presets/skin" as *;
+@use "../presets/variables" as *;
+
 .shine-button {
   position: relative;
 
@@ -10,41 +13,45 @@
   transition: 0.2s ease-in-out;
   text-decoration: none;
 
-  color: #fe6637;
-  border: 3px solid #fe6637;
+  color: $color-menu;
+  border: $menu-border solid $color-menu-border;
   border-radius: 8px;
-  background-color: white;
+  background-color: $color-menu-background;
 
   font-family: "Montserrat", sans-serif;
 }
+
 .shine-button:before {
   position: absolute;
   top: -8px;
   left: -75px;
 
-  width: 50px;
-  height: 50px;
+  width: $menu-button-size;
+  height: $menu-button-size;
 
   content: "";
   transform: skewX(-45deg);
 
   background: linear-gradient(
-  90deg,
-  rgba(255, 255, 255, 0.1),
-  rgba(255, 255, 255, 0.5)
+    90deg,
+    rgba($color-menu-background, 0.1),
+    rgba($color-menu-background, 0.5)
   );
 }
+
 .shine-button:hover {
-  color: #ffffff;
-  background: #fe6637;
+  color: $color-menu-background;
+  background: $color-menu;
 }
+
 .shine-button:hover:before {
   left: 150px;
 
   transition: 0.5s ease-in-out;
 }
+
 .instruction-accent {
-  margin-right: 10px;
+  margin-right: calc($gap / 2);
 
   font-weight: bold;
 }
